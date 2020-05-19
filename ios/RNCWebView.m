@@ -119,6 +119,7 @@ static NSURLCredential* clientAuthenticationCredential;
     WKWebViewConfiguration *wkWebViewConfig = [WKWebViewConfiguration new];
     WKPreferences *prefs = [[WKPreferences alloc]init];
     [prefs setValue:@TRUE forKey:@"allowFileAccessFromFileURLs"];
+    [wkWebViewConfig setValue:@TRUE forKey:@"allowUniversalAccessFromFileURLs"];
     if (!_javaScriptEnabled) {
       prefs.javaScriptEnabled = NO;
       wkWebViewConfig.preferences = prefs;
