@@ -117,11 +117,9 @@ static NSURLCredential* clientAuthenticationCredential;
 {
   if (self.window != nil && _webView == nil) {
     WKWebViewConfiguration *wkWebViewConfig = [WKWebViewConfiguration new];
-    WKPreferences *prefs = [[WKPreferences alloc]init];
+    WKPreferences *prefs = wkWebViewConfig.preferences;
     [prefs setValue:@TRUE forKey:@"allowFileAccessFromFileURLs"];
     [wkWebViewConfig setValue:@TRUE forKey:@"allowUniversalAccessFromFileURLs"];
-    NSLog("jjordan: set prefs on config")
-    wkWebViewConfig.preferences = prefs;
     if (!_javaScriptEnabled) {
       prefs.javaScriptEnabled = NO;
     }
@@ -161,7 +159,6 @@ static NSURLCredential* clientAuthenticationCredential;
 #endif
 
     if (_urlScheme) {
-      NSLog("jjordan: setting url scheme handler")
       self.schemeHandler = [[RNCWKSchemeHandler alloc] init];
       [wkWebViewConfig setURLSchemeHandler:self.schemeHandler forURLScheme:_urlScheme];
       self.schemeHandler.delegate = self;
